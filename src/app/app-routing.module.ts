@@ -1,7 +1,14 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {HomeComponent} from "./home/home.component";
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path:'',redirectTo:'/',pathMatch:'full'},
+  {path:'',component:HomeComponent,pathMatch:'full'},
+  { path: 'countries', loadChildren: () => import('./countries/countries.module').then(m => m.CountriesModule) },
+  { path: 'covid', loadChildren: () => import('./covid/covid.module').then(m => m.CovidModule) },
+  { path: 'coin', loadChildren: () => import('./coin/coin.module').then(m => m.CoinModule) },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
